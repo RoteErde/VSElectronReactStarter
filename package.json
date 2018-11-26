@@ -2,16 +2,18 @@
   "name": "stock-trade",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
   "dependencies": {
     "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-dom": "^16.6.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": ".\\node_modules\\.bin\\concurrently \".\\node_modules\\.bin\\cross-env BROWSER=none .\\node_modules\\.bin\\react-scripts start\" \".\\node_modules\\.bin\\wait-on http://localhost:3000 && .\\node_modules\\.bin\\electron .\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pack": "electron-builder --dir",
+    "dist": "npx build --x64 --macos --win --linux --c.extraMetadata.main=build/electron.js -p always"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +23,14 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "electron": "^3.0.10",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-is-dev": "^1.0.1",
+    "react-scripts": "^2.1.1",
+    "wait-on": "^3.2.0"
+  }
 }
